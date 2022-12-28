@@ -1,6 +1,6 @@
 {
   "name": "changeset-test",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -15,7 +15,7 @@
   "bugs": {
     "url": "https://github.com/DiamondThree/test-changeset/issues"
   },
-  "devDependencies":{
+  "devDependencies": {
     "@changesets/cli": "^2.26.0"
   },
   "homepage": "https://github.com/DiamondThree/test-changeset#readme"
