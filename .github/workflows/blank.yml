@@ -1,38 +1,29 @@
-name: Unit Tests
+name: Release
+
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  test:
-    timeout-minutes: 60
+  release:
+    name: Release
     runs-on: ubuntu-latest
-    permissions: write-all
-      
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 'latest'
-
-      - uses: actions/setup-node@v3
+      - name: Setup Node.js 16
+        uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com
-          scope: '@toeverything'
-          cache: 'pnpm'
 
-      
-      - name: create
-        run: pnpm install --no-frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_GITHUB_AUTH_TOKEN }}
+      - name: Install Dependencies
+        run: yarn
 
-      - name: Create changelog
-        id: changesets
+      - name: Create Release Pull Request
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
