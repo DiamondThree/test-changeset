@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions: write-all
-      
+    
     steps:
       - uses: actions/checkout@v3
 
@@ -24,12 +24,9 @@ jobs:
           registry-url: https://npm.pkg.github.com
           scope: '@toeverything'
           cache: 'pnpm'
-
       
       - name: create
-        run: pnpm install --no-frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_GITHUB_AUTH_TOKEN }}
+        run: pnpm install 
 
       - name: Create changelog
         id: changesets
