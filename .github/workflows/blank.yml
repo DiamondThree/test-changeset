@@ -26,9 +26,7 @@ jobs:
 
       
       - name: create
-        run: pnpm install --no-frozen-lockfile
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_GITHUB_AUTH_TOKEN }}
+        run: pnpm install 
 
       - name: Create changelog
         id: changesets
