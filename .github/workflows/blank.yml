@@ -32,7 +32,5 @@ jobs:
       - name: Create changelog
         id: changesets
         uses: changesets/action@v1
-        with:
-          createGithubReleases: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
